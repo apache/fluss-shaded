@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.apache.fluss</groupId>
+        <artifactId>fluss-shaded</artifactId>
+        <version>1.0-incubating</version>
+    </parent>
+
+    <artifactId>fluss-shaded-arrow-parent</artifactId>
+
+    <name>fluss-shaded-arrow-parent</name>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>fluss-shaded-arrow-15</module>
+        <module>fluss-shaded-arrow-16</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>shade-fluss</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <createDependencyReducedPom>true</createDependencyReducedPom>
+                            <dependencyReducedPomLocation>${project.basedir}/target/dependency-reduced-pom.xml</dependencyReducedPomLocation>
+                            <artifactSet>
+                                <includes>
+                                    <include>org.apache.arrow:*</include>
+                                    <include>com.google.flatbuffers:*</include>
+                                    <!-- arrow-memory-netty has classes defined in this package -->
+                                    <include>io.netty:*</include>
+                                    <!-- Only for Arrow 15.0.0 -->
+                                    <include>org.eclipse.collections.impl.map.mutable.primitive.IntObjectHashMap</include>
+                                </includes>
+                                <excludes>
+                                    <!-- We re-use fluss-shaded-jackson -->
+                                    <exclude>com.fasterxml.jackson.core:*</exclude>
+                                    <exclude>com.fasterxml.jackson.datatype:*</exclude>
+                                </excludes>
+                            </artifactSet>
+                            <relocations>
+                                <!-- we don't put version suffix for arrow, other shaded pattern
+                                    should also doesn't need the suffix for Fluss -->
+                                <relocation>
+                                    <pattern>org.apache.arrow</pattern>
+                                    <shadedPattern>${shading.prefix}.arrow.org.apache.arrow</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>com.google.flatbuffers</pattern>
+                                    <shadedPattern>${shading.prefix}.arrow.com.google.flatbuffers</shadedPattern>
+                                </relocation>
+                                <!-- This needs to match the relocation pattern of fluss-shaded-netty -->
+                                <relocation>
+                                    <pattern>io.netty</pattern>
+                                    <shadedPattern>${shading.prefix}.netty4.io.netty</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <!-- This needs to match the relocation pattern of fluss-shaded-jackson -->
+                                    <pattern>com.fasterxml.jackson</pattern>
+                                    <shadedPattern>${shading.prefix}.jackson2.com.fasterxml.jackson</shadedPattern>
+                                </relocation>
+                            </relocations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <!-- Used to resolve variables in the 'version' tag -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

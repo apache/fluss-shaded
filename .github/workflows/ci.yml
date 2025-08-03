@@ -33,7 +33,6 @@ jobs:
         with:
           java-version: 8
           distribution: 'temurin'
-          cache: 'maven'
 
       - name: Set Maven 3.8.6
         uses: stCarolas/setup-maven@v4.2

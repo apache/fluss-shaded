@@ -24,12 +24,12 @@
     <parent>
         <groupId>org.apache.fluss</groupId>
         <artifactId>fluss-shaded</artifactId>
-        <version>1.0-incubating</version>
+        <version>2.0-incubating</version>
     </parent>
 
     <artifactId>fluss-shaded-guava${fluss.ci.license.suffix}</artifactId>
     <name>fluss-shaded-guava-32</name>
-    <version>${guava.version}-1.0-incubating</version>
+    <version>${guava.version}-2.0-incubating</version>
 
     <packaging>jar</packaging>
 

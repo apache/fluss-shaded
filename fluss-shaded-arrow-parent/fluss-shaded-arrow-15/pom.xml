@@ -36,7 +36,7 @@
     <properties>
         <!-- Arrow 15 mistaken introduced org.eclipse.collections as a dependency, which has
         license legal problem. See https://github.com/apache/arrow/issues/40896 -->
-        <arrow.version>15.0.0</arrow.version>
+        <arrow.version>15.0.2</arrow.version>
     </properties>
 
     <dependencies>

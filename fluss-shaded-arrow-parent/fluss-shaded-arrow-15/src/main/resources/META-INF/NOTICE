@@ -6,8 +6,8 @@ The Apache Software Foundation (http://www.apache.org/).
 
 This project bundles the following dependencies under the Apache Software License 2.0 (http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-- org.apache.arrow:arrow-vector:15.0.0
-- org.apache.arrow:arrow-format:15.0.0
-- org.apache.arrow:arrow-memory-core:15.0.0
-- org.apache.arrow:arrow-memory-netty:15.0.0
+- org.apache.arrow:arrow-vector:15.0.2
+- org.apache.arrow:arrow-format:15.0.2
+- org.apache.arrow:arrow-memory-core:15.0.2
+- org.apache.arrow:arrow-memory-netty:15.0.2
 - com.google.flatbuffers:flatbuffers-java:23.5.26

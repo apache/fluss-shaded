@@ -60,6 +60,8 @@
                                     <include>io.netty:*</include>
                                     <!-- Only for Arrow 15.0.0 -->
                                     <include>org.eclipse.collections.impl.map.mutable.primitive.IntObjectHashMap</include>
+                                    <!-- arrow-variant depends on parquet-variant -->
+                                    <include>org.apache.parquet:*</include>
                                 </includes>
                                 <excludes>
                                     <!-- We re-use fluss-shaded-jackson -->
@@ -87,6 +89,15 @@
                                     <!-- This needs to match the relocation pattern of fluss-shaded-jackson -->
                                     <pattern>com.fasterxml.jackson</pattern>
                                     <shadedPattern>${shading.prefix}.jackson2.com.fasterxml.jackson</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.apache.parquet</pattern>
+                                    <shadedPattern>${shading.prefix}.arrow.org.apache.parquet</shadedPattern>
+                                </relocation>
+                                <!-- parquet-format-structures bundles its own shaded thrift -->
+                                <relocation>
+                                    <pattern>shaded.parquet</pattern>
+                                    <shadedPattern>${shading.prefix}.arrow.shaded.parquet</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>

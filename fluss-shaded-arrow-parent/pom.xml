@@ -34,6 +34,7 @@
     <modules>
         <module>fluss-shaded-arrow-15</module>
         <module>fluss-shaded-arrow-16</module>
+        <module>fluss-shaded-arrow-19</module>
     </modules>
 
     <build>

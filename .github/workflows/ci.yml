@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Java 8 Build
+name: Java 11 Build
 
 on: [push, pull_request]
 
@@ -31,7 +31,7 @@ jobs:
       - name: Set JDK
         uses: actions/setup-java@v2
         with:
-          java-version: 8
+          java-version: 11
           distribution: 'temurin'
 
       - name: Set Maven 3.8.6

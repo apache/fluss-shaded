@@ -1,0 +1,20 @@
+fluss-shaded-arrow-19
+Copyright 2025 The Apache Software Foundation
+
+This product includes software developed at
+The Apache Software Foundation (http://www.apache.org/).
+
+This project bundles the following dependencies under the Apache Software License 2.0 (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+- org.apache.arrow:arrow-vector:19.0.0
+- org.apache.arrow:arrow-format:19.0.0
+- org.apache.arrow:arrow-memory-core:19.0.0
+- org.apache.arrow:arrow-memory-netty:19.0.0
+- org.apache.arrow:arrow-memory-netty-buffer-patch:19.0.0
+- org.apache.arrow:arrow-variant:19.0.0
+- com.google.flatbuffers:flatbuffers-java:25.2.10
+- org.apache.parquet:parquet-variant:1.17.0
+- org.apache.parquet:parquet-common:1.17.0
+- org.apache.parquet:parquet-column:1.17.0
+- org.apache.parquet:parquet-format-structures:1.17.0
+- org.apache.parquet:parquet-encoding:1.17.0
